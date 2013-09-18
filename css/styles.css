@@ -1,0 +1,337 @@
+html {
+    font-size: 18px;
+}
+body {
+    font-family:'PT Serif', Georgia, serif;
+    color: #603311;
+    background-color: #EEDFCC;
+    margin: 0 5%;
+    padding: 1em 0;
+    max-width:480px;
+}
+
+header, section, aside, footer {
+    border: 0 solid black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size:1.5rem;
+    display:inline-block;
+}
+
+#fanLicense {
+    border: 0;
+    display:inline-block;
+    vertical-align: middle;
+}
+
+#appTitle a {
+    font-family: Quattrocento, serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: rgb(208, 35, 38);
+    -webkit-text-stroke: 0.3px black;
+    -ms-text-stroke: 0.3px black;
+    -moz-text-stroke: 0.3px black;
+    filter: glow(strength=1, color=#000000);
+    text-transform: uppercase;
+    text-align: left;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+#ratingContent {
+    clear: both;
+}
+
+#rating {
+    margin-left: 1em;
+}
+
+#generate {
+    display:block;
+    clear:both;
+}
+
+#right-panel {
+    position: fixed;
+    background-color: #FAF0E6;
+    max-width: 480px;
+    width:0;
+    height:100%;
+    right: 0;
+    top: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    /*border:1px solid #333;*/
+    border-radius: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+    transition-property: max-width, width;
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+}
+
+#right-panel.display {
+    max-width:480px;
+    width:100%;
+    transition-property: max-width, width;
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+}
+
+#panel-buttons {
+    position:fixed;
+    right:0;
+    top:0;
+    box-shadow: 0 3px 3px #333;
+    z-index:99;
+}
+
+#settingsButton, #aboutButton {
+    font-size:32px;
+    text-align:center;
+    color: #FAF0E6;
+    background-color: #603311;
+    padding: .1em;
+    cursor: pointer;
+}
+
+#panel-buttons img {
+    display:block;
+}
+
+#about-wrapper, #settings-wrapper {
+    padding:1em;
+    display: none;
+    margin-right: 45px;
+}
+
+#no-type-warning {
+    color: #f00;
+}
+
+#about-accordion h3 {
+    color: #FAF0E6;
+    background-color: #603311;
+    height: 32px;
+    line-height:1.5em;
+    padding-left: .5em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .8);
+    cursor: pointer;
+}
+
+#about-accordion h3:active {
+    box-shadow: none;
+}
+
+input {
+    font-family:'PT Serif', serif;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+input[type="number"] {
+    color: #603311;
+    background-color: #FAF0E6;
+}
+
+input[type="button"] {
+    width: auto;
+    margin: .5em 0;
+    padding: .5em;
+    text-align: center;
+    color: #FAF0E6;
+    background-color: #603311;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-color: #333;
+    border-style: outset;
+    border-width: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+}
+
+input[type="button"]:active, select:active {
+    border-style: inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .6) inset;
+}
+
+#customGoldMultiplier, #customMagicItemChance {
+    width: 3em;
+}
+
+#customGoldAmount {
+    width: 4em;
+}
+
+select {
+    color: #FAF0E6;
+    background-color: #603311;
+    font-family:'PT Serif', Georgia, serif;
+    font-size: 1em;
+    padding: .5em;
+    border-color: #000;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+    cursor: pointer;
+}
+
+select, input[type="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#customTreasureRating, #print-icon {
+    display: none;
+}
+
+#chooseTypes input[type="checkbox"]:disabled +span {
+    text-decoration: line-through;
+}
+
+#settings-wrapper label {
+    display:block;
+    margin: 1em 0;
+}
+
+#total-gold {
+    padding-bottom:1em;
+}
+
+#total-gold, #loot-output article:not(:last-child) {
+    border-bottom: 1px dashed #603311;
+}
+
+#loot-output article h2 {
+    margin-top: .25em;
+}
+
+.item-card {
+    background-color: #FAF0E6;
+    border-radius:3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+    margin-bottom: 1rem;
+}
+
+.item-name {
+    font-weight: 700;
+    text-transform: none;
+    text-align:left;
+}
+
+.item-card h4 {
+    border-top: 1px solid #ddd;
+    padding-top: 1em;
+}
+
+.item-card ul {
+    list-style-type:none;
+    padding-left:0;
+}
+
+.cost {
+    text-align: right;
+}
+
+.treasure-buttons {
+    float:right;
+}
+
+.icon-link, .icon-print {
+    font-size:18px;
+    padding:0 .5rem;
+    text-decoration: none;
+    color: #603311;
+    cursor: pointer;
+}
+
+.item-card, #footer {
+    padding: .25em .5em;
+}
+
+#loot-output div h2 {
+    border-top: 1px dashed #333;
+}
+
+#footer {
+    border-top: 1px dashed #333;
+    padding-top: 0;
+    margin-top: 1em;
+}
+
+#footer p {
+    font-size: .9rem;
+}
+
+#g-plus-wrapper {
+    margin: 0 auto;
+}
+#footer p.credits {
+    font-size: .7rem;
+    text-align: justify;
+}
+
+@media print {
+
+    body {
+        background-color: #fff;
+        margin: .15in .5in;
+        max-width: 8.5in;
+        padding: 0;
+    }
+
+	#total-gold, #loot-output article:not(:last-child) {
+    	border-bottom: 0;
+	}
+
+    .item-card {
+        font-family:'PT Serif', serif;
+        font-size: 9pt;
+        position: relative;
+        width: 2.15in;
+        height: 3.25in;
+        border: thin dashed;
+        border-radius: .125in;
+        background-color: #fff;
+        color: #000;
+        overflow: hidden;
+        box-shadow: none;
+        page-break-inside: avoid;
+        float: left;
+        margin:0;
+    }
+
+    .item-name {
+        font-size: 11pt;
+        margin:.5em;
+    }
+
+    h3, h4, p, ul {
+        margin-right: .5em;
+        margin-left: .5em;
+    }
+
+    .item-card h4 {
+        font-size: 10pt;
+        margin-top: 3pt;
+        margin-bottom: -0.5em;
+    }
+
+    .item-card .cost {
+        position:absolute;
+        bottom:0;
+        right:1em;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+}

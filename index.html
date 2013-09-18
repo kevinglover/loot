@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Savage Worlds Fantasy Companion Loot Generator</title>
+		<link rel="icon" type="image/ico" href="images/favicon.ico" />
+		<link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic|Quattrocento:400,700' rel='stylesheet' type='text/css'>
+		<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/styles.css" type="text/css" />
+
+		<!--Being Google Cloud Print -->
+		<script src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
+		<!--End Google Cloud Print -->
+
+		<!-- <script src="js/jquery.min.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- <script src="js/jquery-ui.min.js"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!-- load JqueryBBQ for deparam function -->
+		<script src="js/jquery.ba-bbq.min.js"></script>
+		<!-- Begin Loot generating JavaScript and AJAX call -->
+		<script src="js/loot_gen.js"></script>
+		<!-- End Loot generating JavaScript and AJAX call -->
+	</head>
+
+	<body>
+		<!-- Begin Google +1 Button -->
+		<div id="g-plus-wrapper" class="no-print">
+			<div class="g-plusone" data-annotation="inline" data-width="250"></div>
+			<script type="text/javascript">
+				(function() {
+					var po = document.createElement('script');
+					po.type = 'text/javascript';
+					po.async = true;
+					po.src = 'https://apis.google.com/js/plusone.js';
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(po, s);
+				})();
+			</script>
+		</div>
+		<!-- End Google +1 Button -->
+
+		<div id="panel-buttons" class="no-print">
+			<div id="settingsButton">
+				<span class="icon-cogs"></span>
+			</div>
+			<div id="aboutButton">
+				<span class="icon-info-sign"></span>
+			</div>
+		</div>
+		<div id="right-panel" class="no-print">
+			<section id="settings-wrapper">
+				<h2 class="settingsHead" id="treasureHead">Settings</h2>
+				<div id="chooseTypes" class="settingsContent">
+					<input type="button" value="Select All" id="selectAll">
+					<input type="button" value="Clear All" id="clearAll">
+					<h3>Relic Types</h3>
+					<p>
+						Select the types of items you'd like to generate.
+					</p>
+					<label for="armor_shields">
+						<input form="lootForm" type="checkbox" id="armor_shields" value="true" checked />
+						<span>Armor &amp; Shields</span> </label>
+					<label for="melee_weapon">
+						<input form="lootForm" type="checkbox" id="melee_weapon" value="true" checked />
+						<span>Melee Weapons</span> </label>
+					<label for="ranged_weapon">
+						<input form="lootForm" type="checkbox" id="ranged_weapon" value="true" checked />
+						<span>Ranged Weapons</span> </label>
+					<label for="blackpowder">
+						<input form="lootForm" type="checkbox" id="blackpowder" value="true" />
+						<span>Blackpowder Weapons</span> </label>
+					<label for="miscellaneous_item">
+						<input form="lootForm" type="checkbox" id="miscellaneous_item" value="true" checked />
+						<span>Miscellaneous Items</span> </label>
+					<label for="potions">
+						<input form="lootForm" type="checkbox" id="potions" value="true" checked />
+						<span>Potions</span> </label>
+					<label for="rings">
+						<input form="lootForm" type="checkbox" id="rings" value="true" checked />
+						<span>Rings</span> </label>
+					<label for="scrolls">
+						<input form="lootForm" type="checkbox" id="scrolls" value="true" checked />
+						<span>Scrolls</span> </label>
+					<label for="tomes">
+						<input form="lootForm" type="checkbox" id="tomes" value="true" checked />
+						<span>Tomes</span> </label>
+					<label for="wands_staves">
+						<input form="lootForm" type="checkbox" id="wands_staves" value="true" checked />
+						<span>Wands &amp; Staves</span> </label>
+					<div id="adjustments">
+						<h3>Increase Chance of Named Items</h3>
+						<label for="adjusted">
+							<input form="lootForm" type="checkbox" id="adjusted" value="true">
+							5% chance of named Ranged Weapons and Misc. Items </label>
+						<p>
+							This will adjust the chance of a named item for Ranged Weapons and Misc. Items from the <a href="http://www.peginc.com/forum/viewtopic.php?t=33140" target="_blank">officially suggested</a> 0.25% to 5% as offered in the Armor &amp; Shields or Melee Weapons tables.
+						</p>
+						<h3> Intelligent Relics</h3>
+						<label for="intelligent">
+							<input form="lootForm" type="checkbox" id="intelligent" value='true'>
+							Always create an Intelligent Relic </label>
+						<p>
+							Leaving this option unchecked will randomly determine whether or not the relic is intelligent. (Note: This option does not apply to potions, scrolls, and tomes.)
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="about-wrapper">
+				<h2 id="aboutTitle" class="subtitle">About the Loot Generator</h2>
+				<p itemprop="description">
+					The Fantasy Loot Generator is designed to facilitate generation of random loot using the tables presented in the Savage Worlds Fantasy Companion. Below are a few notes regarding the decisions governing the script and features.
+				</p>
+				<div id="about-accordion">
+					<h3>Multiple Rolls</h3>
+					<div>
+						<p>
+							Users can now roll for multiples of a given treasure rating. For example, a user can roll Meager treasure four times all at once. The output will include the gold and any potential relics for each treasure as well as a total amount
+							of gold (not including the cost of any relics).
+						</p>
+					</div>
+					<h3>Links to Individual Items</h3>
+					<div>
+						<p>
+							I've added the ability to link to or bookmark individual items generated via a query string. This is a great way to send individual items to others, bookmark them yourself, or use them to send a bug report to me with an example.
+						</p>
+					</div>
+					<h3>Print Multiple Cards</h3>
+					<div>
+						<p>
+							Since you'll be able to generate multiple items, you should be able to print multiple cards to a single page. Using the browser's print feature, you'll be able to print approximately 2.5" x 3.5" cards for items generated. The CSS
+							is still being tweaked, but it's my goal to have at least 4 cards per sheet if not 6 cards per sheet.
+						</p>
+					</div>
+					<h3>Google Cloud Print</h3>
+					<div>
+						<p>
+							I've added URLs and print icons for generated relics to print using Google Cloud Print. This allows users to print to any printer they own and have set up in <a href="http://www.google.com/cloudprint/learn/" target="_blank">Google Cloud Print</a>,
+							send the item's URL to another device that has Google Chrome, or save a PDF to <a href="https://drive.google.com/" target="_blank">Google Drive</a>. The output will always be in the print card layout (still undergoing some tweaks)
+							regardless of whether it's printed as a page or saved as a PDF. If you're using Google Chrome, Cloud Print is baked in to the default printing command, and you'll be able to save or print entire collections of items generated
+							in one document.
+						</p>
+					</div>
+					<h3>Minor and Major Artifacts</h3>
+					<div>
+						<p>
+							<strong>Fixed Aspects:</strong> For Powers of Minor or Major Artifacts, the Fantasy Companion instructs, "Powers which can affect multiple aspects (such as <em>boost trait</em>) must have a single, fixed aspect chosen during
+							creation." Accordingly, the script randomly generates the fixed aspect such as a Trait to which the power applies and sometimes an Attribute associated with the type of armor or weapon as suggested by the table descriptions.
+							For example, <em>boost Smarts</em> or <em>boost Spirit</em> applies to a helmet, and <em>boost Strength</em> or <em>boost Vigor</em> applies to Melee Weapons.
+						</p>
+						<p>
+							<strong>Power Points for Major Artifacts:</strong> The script randomly rolls for a specific number of Power Points or an effect (typically determined by how many Power Points are spent to activate the power). If an effect is
+							given, then it is fixed. For example, an item with the <em>blast</em> power might always produce a Medium Burst for 3d6 damage.
+						</p>
+						<p>
+							<strong>Durations:</strong> The script does not determine the duration of an item's power. It always assumes the minimum duration. GM's are free to extend the duration by adding the appropriate Power Points and adjusting the
+							cost accordingly.
+						</p>
+					</div>
+					<h3>Named Items</h3>
+					<div>
+						<p>
+							The <em>Ranged Weapons</em> and <em>Miscellaneous Magic</em> tables don't include results for named items unlike the <em>Armor &amp; Shields</em> and <em>Melee Weapons</em> tables. According to <a href="http://www.peginc.com/forum/viewtopic.php?t=33140"
+							target="_blank" title="Rules Guru">Savage Worlds Core Rules Brand Manager Clint Black</a>, "If you want to add a random chance, then for Ranged Weapons, got [sic] to Table 3G if you roll a second 20 on Table 3B. And for Miscellaneous
+							Magic, go to Table 4F if you roll a second 20 in Table 4A." The script follows this method exactly. However, there is an option to adjust the chance of named ranged weapons and miscellaneous items to 5%. A similar option to
+							adjust Melee Weapons to 5% from the reprints change to 2.5% is being develped.
+						</p>
+					</div>
+					<h3>Power Points for Scrolls</h3>
+					<div>
+						<p>
+							Power Points for Scrolls are based on the defaults listed in Table 7B: Powers.
+						</p>
+					</div>
+					<h3>Intelligent Relics</h3>
+					<div>
+						<p>
+							<strong>Attributes:</strong> The script rolls d2 a number of times equal to the result from the Attributes column. Depending on whether the result is a 1 or 2, it increases die size for Smarts or Spirit respectively.
+						</p>
+						<p>
+							<strong>Potions, Scrolls, and Tomes:</strong> If the item is a potion, scroll, or tome, then the script does not roll for Intelligent Relics.
+						</p>
+					</div>
+				</div>
+				<footer id="footer" class="no-print">
+					<p>
+						Designed and developed on <a style="text-decoration:none;" href="http://www.immaterialplane.com/" target="_blank">The Immaterial Plane</a>
+					</p>
+					<!--<div class="g-plus" data-width="200" data-href="//plus.google.com/118153417237614725639" data-rel="author"></div>-->
+					<p class="credits">
+						This application references the Savage Worlds game system and the Savage Worlds Fantasy Companion, available from Pinnacle Entertainment Group at <a href="http://www.peginc.com" target="_blank" title="Pinnacle Entertainment Group, Inc.">www.peginc.com</a>.
+						Savage Worlds and all associated logos and trademarks are copyrights of Pinnacle Entertainment Group. Used with permission. Pinnacle makes no representation or warranty as to the quality, viability, or suitability for purpose of
+						this product.
+					</p>
+					<p class="credits">
+						Font Awesome by Dave Gandy - <a href="http://fontawesome.io" target="_blank">http://fontawesome.io</a>
+					</p>
+				</footer>
+			</section>
+		</div>
+		<main id="main-wrapper" class="no-print">
+			<header class="onerow">
+				<a href="http://www.peginc.com/games/savage-worlds/" target="_blank"> <img class="col5" src="images/SW_Fan.png" alt="Savage Worlds Fan License" id="fanLicense" title="Savage Worlds"> </a>
+				<h1 id="appTitle" class="col7"><a href="./">Fantasy&nbsp;Companion Loot&nbsp;Generator</a></h1>
+			</header>
+			<section id="app-wrapper" class="onerow">
+				<section id="ratingContent">
+					<form id="lootForm" onsubmit="return false">
+						<label for="rating">Treasure Rating:</label>
+						<select name="rating" id="rating">
+							<option value="meager">Meager</option>
+							<option value="worthwhile">Worthwhile</option>
+							<option value="rich">Rich</option>
+							<option value="treasure_trove" selected="selected">Treasure Trove</option>
+							<option value="custom">Custom...</option>
+						</select>
+						<br />
+						<div id="customTreasureRating">
+							Gold: <label for="customGoldMultiplier">d</label>
+							<input type="number" id="customGoldMultiplier" name="customGoldMultiplier" value="6" min="1" title="Integers only">
+							&times; <label for="customGoldAmount">$</label>
+							<input type="number" id="customGoldAmount" name="customGoldAmount" value="50" min="1" title="Integers only">
+							<br>
+							<label for="customMagicItemChance">Chance of Magic Item:</label>
+							<input type="number" id="customMagicItemChance" name="customMagicItemChance" value="100" min="1" max="100" title="Integers only">
+							%
+						</div>
+						<label for="lootMultiplier">Number of Rolls:</label>
+						<select id="lootMultiplier">
+							<option value="1" selected>1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+						</select>
+						<input type="button" id="generate" value="Gimme Loot!" />
+					</form>
+				</section>
+			</section>
+		</main>
+		<section id="loot-output"></section>
+
+		<!-- Begin Google Anlytics -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-9451100-1']);
+			_gaq.push(['_setDomainName', 'immaterialplane.com']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script');
+				ga.type = 'text/javascript';
+				ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+		<!-- End Google Anlytics -->
+
+	</body>
+
+</html>
